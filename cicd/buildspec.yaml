@@ -1,0 +1,26 @@
+# @format
+
+version: 0.2
+
+phases:
+    install:
+        runtime-versions:
+            nodejs: 18.x
+    pre_build:
+        commands:
+            - npm i
+            - npm install -g @angular/cli
+    build:
+        commands:
+            - npm run build:prod
+artifacts:
+    files:
+        - '**/*'
+    name: WebAssets
+    base-directory: dist/[PROJECT_NAME]/browser
+    secondary-artifacts:
+        WebAssets:
+            files:
+                - '**/*'
+            base-directory: dist/[PROJECT_NAME]/browser
+            name: WebAssets
